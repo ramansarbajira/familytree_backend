@@ -9,6 +9,7 @@ import { LanguageModule } from './language/language.module';
 import { GothramModule } from './gothram/gothram.module';
 import { RelationshipsModule } from './relationships/relationships.module';
 import { RelationshipSeeder } from './relationships/seed/seed-relationships';
+import { FamilyModule } from './family/family.module';
 import { setupAssociations } from './associations/sequelize.associations';
 
 @Module({
@@ -37,6 +38,7 @@ import { setupAssociations } from './associations/sequelize.associations';
     LanguageModule,
     GothramModule,
     RelationshipsModule,
+    FamilyModule
   ],
   providers: [RelationshipSeeder],
 })
