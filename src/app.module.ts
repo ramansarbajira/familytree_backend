@@ -7,6 +7,8 @@ import { CountryModule } from './country/country.module';
 import { ReligionModule } from './religion/religion.module';
 import { LanguageModule } from './language/language.module';
 import { GothramModule } from './gothram/gothram.module';
+import { RelationshipsModule } from './relationships/relationships.module';
+import { RelationshipSeeder } from './relationships/seed/seed-relationships';
 import { setupAssociations } from './associations/sequelize.associations';
 
 @Module({
@@ -33,11 +35,17 @@ import { setupAssociations } from './associations/sequelize.associations';
     CountryModule,
     ReligionModule,
     LanguageModule,
-    GothramModule
+    GothramModule,
+    RelationshipsModule,
   ],
+  providers: [RelationshipSeeder],
 })
 export class AppModule {
-  constructor() {
+  constructor(private readonly seeder: RelationshipSeeder) {
     setupAssociations();
+  }
+
+  async onApplicationBootstrap() {
+    await this.seeder.seed();
   }
 }
